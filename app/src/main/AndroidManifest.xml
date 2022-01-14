@@ -3,6 +3,7 @@
     package="com.iamsafi.digitifyTask">
 
     <application
+        android:name=".CurrencyConverterApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

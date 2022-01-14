@@ -11,8 +11,12 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.iamsafi.digitifyTask.R
+import dagger.hilt.android.AndroidEntryPoint
 
-abstract class BaseFragment<VB : ViewDataBinding> : Fragment() {
+@AndroidEntryPoint
+abstract class InjectableFragment : Fragment()
+
+abstract class BaseFragment<VB : ViewDataBinding> : InjectableFragment() {
 
     abstract val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> VB
     private var _binding: VB? = null
