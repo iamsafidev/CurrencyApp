@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- region UI Spacing -->
+    <dimen name="ui_spacing_quarter">2dp</dimen>
+    <dimen name="ui_spacing_half">4dp</dimen>
+    <dimen name="ui_spacing_single">8dp</dimen>
+    <dimen name="ui_spacing_single_negative">-8dp</dimen>
+    <dimen name="ui_spacing_one_half">12dp</dimen>
+    <dimen name="ui_spacing_double">16dp</dimen>
+    <dimen name="ui_spacing_double_half">20dp</dimen>
+    <dimen name="ui_spacing_triple">24dp</dimen>
+    <dimen name="ui_spacing_triple_half">28dp</dimen>
+    <dimen name="ui_spacing_quadruple">32dp</dimen>
+    <dimen name="ui_spacing_sextuple">48dp</dimen>
+    <dimen name="ui_spacing_octuple">64dp</dimen>
+    <!--endregion-->
+
+    <!-- region Input CardView -->
+    <dimen name="card_widget_input_height">180dp</dimen>
+    <dimen name="card_widget_stroke_width">1dp</dimen>
+    <dimen name="card_widget_elevation">8dp</dimen>
+    <dimen name="money_location_widget_title_margin_start">68dp</dimen>
+    <!--endregion-->
+
+</resources>

@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Digitify_Task</string>
+    <string name="select_currency">Select Currency:</string>
+    <string name="no_value_placeholder">0</string>
+
+
+    <!--region Common -->
+    <string name="toolbar_tag">toolbar</string>
+    <string name="dollar_string">$%d</string>
+    <string name="dollar_with_cents_string">$%.2f</string>
+    <string name="app_toolbar_title">Currency Converter</string>
+    <string name="button_skip">Skip</string>
+    <string name="button_retry">Try again</string>
+    <string name="common_yes">Yes</string>
+    <string name="common_no">No</string>
+    <string name="common_ok">Ok</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="i_m_done_button">I\'m Done</string>
+    <string name="common_error_title">Something went wrong</string>
+    <string name="common_error_message">There was a problem loading your %s.</string>
+    <string name="common_chars_length_too_small">Must be at least %d characters</string>
+    <string name="common_chars_length_too_large">No more than %d characters</string>
+    <string name="common_timeout_error_message">Your request has timed out!</string>
+    <!-- endregion -->
+</resources>
