@@ -3,8 +3,10 @@ package com.iamsafi.digitifyTask.data.api.interceptor
 import com.iamsafi.digitifyTask.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.Response
+import javax.inject.Inject
 
-class ApiKeyInterceptor : Interceptor {
+class ApiKeyInterceptor @Inject constructor() : Interceptor {
+
     override fun intercept(chain: Interceptor.Chain): Response {
         var original = chain.request()
         val url =

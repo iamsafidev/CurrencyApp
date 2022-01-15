@@ -3,120 +3,150 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main"
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="adapter"
+            type="com.iamsafi.digitifyTask.presentation.adapters.CurrencyListAdapter" />
+
+        <variable
+            name="spinnerAdapter"
+            type="com.iamsafi.digitifyTask.presentation.adapters.SpinnerAdapter" />
+
+        <variable
+            name="viewModel"
+            type="com.iamsafi.digitifyTask.presentation.main.MainPageViewModel" />
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/translucent"
-        tools:context=".ui.home.HomeFragment">
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/translucent"
+            tools:context=".ui.home.HomeFragment">
+
+            <include
+                android:id="@+id/toolbar_container"
+                layout="@layout/toolbar_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:title="@{@string/app_toolbar_title}" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardView"
+                style="@style/CustomCardViewStyle"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/card_widget_input_height"
+                android:layout_marginTop="@dimen/ui_spacing_double_half"
+                android:clipToPadding="false"
+                app:cardElevation="@dimen/card_widget_elevation"
+                app:layout_constraintEnd_toEndOf="@id/guideline92"
+                app:layout_constraintStart_toStartOf="@id/guideline08"
+                app:layout_constraintTop_toBottomOf="@id/toolbar_container"
+                app:strokeColor="@color/colorPrimaryDark"
+                app:strokeWidth="@dimen/card_widget_stroke_width">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:weightSum="1">
+
+                    <EditText
+                        android:id="@+id/currencyTo"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5"
+                        android:background="@null"
+                        android:gravity="end|center"
+                        android:hint="@string/no_value_placeholder"
+                        android:inputType="numberDecimal"
+                        android:maxLines="1"
+                        android:padding="@dimen/ui_spacing_one_half"
+                        android:text="@={viewModel.amount}"
+                        android:textSize="@dimen/textSizeHeading4"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="Autofill" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@color/colorPrimaryDark" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        style="@style/CustomCardViewStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5"
+                        android:background="@color/translucent"
+                        app:contentPadding="@dimen/ui_spacing_half"
+                        app:layout_constraintBottom_toBottomOf="parent">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/select_currency" />
+
+                            <Spinner
+                                android:id="@+id/currencyListSpinner"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/ui_spacing_half"
+                                app:spinnerAdapter="@{spinnerAdapter}" />
+
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:adapter="@{adapter}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline92"
+                app:layout_constraintStart_toEndOf="@+id/guideline08"
+                app:layout_constraintTop_toBottomOf="@id/cardView" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline08"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".04" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline92"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".96" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <include
-            android:id="@+id/toolbar_container"
-            layout="@layout/toolbar_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:title="@{@string/app_toolbar_title}"/>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardView"
-            style="@style/CustomCardViewStyle"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/card_widget_input_height"
-            android:layout_marginTop="@dimen/ui_spacing_double_half"
-            android:clipToPadding="false"
-            app:cardElevation="@dimen/card_widget_elevation"
-            app:layout_constraintEnd_toEndOf="@id/guideline92"
-            app:layout_constraintStart_toStartOf="@id/guideline08"
-            app:layout_constraintTop_toBottomOf="@id/toolbar_container"
-            app:strokeColor="@color/colorPrimaryDark"
-            app:strokeWidth="@dimen/card_widget_stroke_width">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:weightSum="1">
-
-                <EditText
-                    android:id="@+id/currencyTo"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.5"
-                    android:background="@null"
-                    android:gravity="end|center"
-                    android:hint="@string/no_value_placeholder"
-                    android:inputType="numberDecimal"
-                    android:maxLines="1"
-                    android:padding="@dimen/ui_spacing_one_half"
-                    android:textSize="@dimen/textSizeHeading4"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="Autofill" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/colorPrimaryDark" />
-
-                <com.google.android.material.card.MaterialCardView
-                    style="@style/CustomCardViewStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.5"
-                    android:background="@color/translucent"
-                    app:contentPadding="@dimen/ui_spacing_half"
-                    app:layout_constraintBottom_toBottomOf="parent">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/select_currency" />
-
-                        <Spinner
-                            android:id="@+id/currencyListSpinner"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/ui_spacing_half" />
-
-                    </LinearLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-
-            </LinearLayout>
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline92"
-            app:layout_constraintStart_toEndOf="@+id/guideline08"
-            app:layout_constraintTop_toBottomOf="@id/cardView" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline08"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent=".04" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline92"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent=".96" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:id="@+id/progressView"
+            layout="@layout/view_progress"
+            android:visibility="@{viewModel.progressVisibility?View.VISIBLE:View.GONE}"
+            tools:visibility="visible" />
+    </FrameLayout>
 </layout>

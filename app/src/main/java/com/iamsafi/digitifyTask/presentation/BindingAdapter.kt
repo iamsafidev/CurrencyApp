@@ -1,4 +1,5 @@
 package com.iamsafi.digitifyTask.presentation
+
 import android.widget.ImageView
 import android.widget.Spinner
 import androidx.core.content.ContextCompat
@@ -11,6 +12,6 @@ fun bindImage(imageView: ImageView, resource: Int) {
 }
 
 @BindingAdapter("spinnerAdapter")
-fun bindSpinnerAdapter(spinner: Spinner, spinnerAdapter: SpinnerAdapter) {
-    spinner.adapter = spinnerAdapter
+fun bindSpinnerAdapter(spinner: Spinner, spinnerAdapter: SpinnerAdapter?) {
+    spinnerAdapter?.let { spinner.adapter = it }
 }

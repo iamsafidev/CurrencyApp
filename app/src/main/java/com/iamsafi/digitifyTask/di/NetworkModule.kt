@@ -7,7 +7,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
 
-
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class NetworkModule {

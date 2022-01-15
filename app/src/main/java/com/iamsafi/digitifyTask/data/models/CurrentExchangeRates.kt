@@ -12,7 +12,7 @@ data class CurrentExchangeRates(
     var timestamp: Long = 0,
 
     @Json(name = "quotes")
-    var quotes: HashMap<String, Double> = HashMap(),
+    var quotes: Map<String, Double> = HashMap(),
 
     @Json(name = "source")
     var source: String? = ""

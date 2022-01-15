@@ -3,8 +3,10 @@ package com.iamsafi.digitifyTask.repository.impl
 import com.iamsafi.digitifyTask.data.datastore.remote.currency.ICurrencyDataStore
 import com.iamsafi.digitifyTask.data.datastore.remote.model.Either
 import com.iamsafi.digitifyTask.data.datastore.remote.model.Failure
+import com.iamsafi.digitifyTask.data.models.Currency
 import com.iamsafi.digitifyTask.data.models.CurrencyTypes
 import com.iamsafi.digitifyTask.data.models.CurrentExchangeRates
+import com.iamsafi.digitifyTask.presentation.utils.safeLet
 import com.iamsafi.digitifyTask.repository.ICurrencyRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -23,5 +25,27 @@ class CurrencyRepository @Inject constructor(private val currencyDataStore: ICur
         return withContext(Dispatchers.IO) {
             currencyDataStore.getCurrencyTypes()
         }
+    }
+
+    override fun getCurrenciesDetails(
+        exchangeRatesList: CurrentExchangeRates?,
+        currencyTypeList: CurrencyTypes?
+    ): Either<List<Currency>, Failure> {
+        return safeLet(
+            exchangeRatesList,
+            currencyTypeList
+        ) { exchangeRates, currencyType ->
+            val list = ArrayList<Currency>()
+            for (entry in currencyType.currencies) {
+                val currency = Currency()
+                currency.code = entry.key
+                currency.name = entry.value
+                currency.rate =
+                    exchangeRates.quotes[exchangeRates.source + currency.code]!! // make it -> USDINR
+                list.add(currency)
+            }
+            Either.Success(list)
+        } ?: Either.Error(Failure())
+
     }
 }
