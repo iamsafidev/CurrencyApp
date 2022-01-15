@@ -56,7 +56,9 @@ abstract class BaseFragment<VB : ViewDataBinding> : InjectableFragment() {
         @StringRes message: Int? = null
     ) {
         MaterialAlertDialogBuilder(requireContext())
-            .setPositiveButton(getString(R.string.common_ok).uppercase()) { _, _ -> }
+            .setPositiveButton(getString(R.string.common_ok).uppercase()) { _, _ ->
+                requireActivity().finish()
+            }
             .setCancelable(false)
             .setTitle(title)
             .apply { if (message != null) setMessage(message) }

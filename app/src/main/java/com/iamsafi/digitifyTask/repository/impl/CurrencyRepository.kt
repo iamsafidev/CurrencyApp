@@ -35,16 +35,19 @@ class CurrencyRepository @Inject constructor(private val currencyDataStore: ICur
             exchangeRatesList,
             currencyTypeList
         ) { exchangeRates, currencyType ->
-            val list = ArrayList<Currency>()
-            for (entry in currencyType.currencies) {
-                val currency = Currency()
-                currency.code = entry.key
-                currency.name = entry.value
-                currency.rate =
-                    exchangeRates.quotes[exchangeRates.source + currency.code]!! // make it -> USDINR
-                list.add(currency)
-            }
-            Either.Success(list)
+            if (exchangeRates.success && currencyType.success) {
+                val list = ArrayList<Currency>()
+                for (entry in currencyType.currencies) {
+                    val currency = Currency()
+                    currency.code = entry.key
+                    currency.name = entry.value
+                    currency.rate =
+                        exchangeRates.quotes[exchangeRates.source + currency.code]!!
+                    list.add(currency)
+                }
+                Either.Success(list)
+            } else
+                Either.Error(Failure())
         } ?: Either.Error(Failure())
 
     }

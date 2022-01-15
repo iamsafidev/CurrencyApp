@@ -40,7 +40,7 @@ class MainPageViewModel @Inject constructor(
             val exchangeRates = async { getCurrencyExchangeRates() }
             //Note: This delay is because on trial account parallel api call returns success false
             //TODO: Remove this delay when purchase account.
-            delay(5000)
+            delay(3000)
             val currencyList = async { getCurrenciesList() }
             when (val result = currencyRepository.getCurrenciesDetails(
                 exchangeRates.await(), currencyList.await()

@@ -9,5 +9,8 @@ import kotlinx.parcelize.Parcelize
 @JsonClass(generateAdapter = true)
 data class CurrencyTypes(
     @Json(name = "currencies")
-    var currencies: Map<String, String> = HashMap()
+    var currencies: Map<String, String>,
+
+    @Json(name = "success")
+    var success: Boolean
 ) : Parcelable
