@@ -21,5 +21,7 @@
     <string name="common_chars_length_too_small">Must be at least %d characters</string>
     <string name="common_chars_length_too_large">No more than %d characters</string>
     <string name="common_timeout_error_message">Your request has timed out!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- endregion -->
 </resources>
