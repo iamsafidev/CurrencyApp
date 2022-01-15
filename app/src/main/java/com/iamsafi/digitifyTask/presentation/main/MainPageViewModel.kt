@@ -37,7 +37,9 @@ class MainPageViewModel @Inject constructor(
     private fun fetchCurrencyData() {
         viewModelScope.launch {
             _progressVisibility.value = true
-            val exchangeRates = async { getCurrencyExchangeRates() }
+            val exchangeRates = async {
+                getCurrencyExchangeRates()
+            }
             //Note: This delay is because on trial account parallel api call returns success false
             //TODO: Remove this delay when purchase account.
             delay(3000)

@@ -1,8 +1,10 @@
 package com.iamsafi.digitifyTask.data.api
 
+import android.content.Context
 import androidx.annotation.VisibleForTesting
 import com.iamsafi.digitifyTask.BuildConfig
 import com.squareup.moshi.Moshi
+import okhttp3.Cache
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -17,6 +19,8 @@ private const val DEFAULT_NETWORK_TIMEOUT = 20L
 
 abstract class BaseApiServiceManager(
     private val authInterceptor: Interceptor,
+    private val context: Context,
+    private val networkInterceptor: Interceptor
 ) {
 
     protected fun <S> createService(serviceClass: Class<S>): S {
@@ -38,12 +42,19 @@ abstract class BaseApiServiceManager(
 
         val builder = OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
+            .cache(getCacheSize(context))
+            .addNetworkInterceptor(networkInterceptor)
             .addInterceptor(authInterceptor)
             .connectTimeout(DEFAULT_NETWORK_TIMEOUT, TimeUnit.SECONDS)
             .writeTimeout(DEFAULT_NETWORK_TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(DEFAULT_NETWORK_TIMEOUT, TimeUnit.SECONDS)
 
         return builder.build()
+    }
+
+    private fun getCacheSize(context: Context): Cache {
+        val cacheSize = 10 * 1024 * 1024 // 10 MB
+        return Cache(context.cacheDir, cacheSize.toLong())
     }
 
     private fun getBaseUrl() = BuildConfig.BASE_URL
