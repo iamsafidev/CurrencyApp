@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.iamsafi.digitifyTask.data.datastore.remote.model.Failure
@@ -31,7 +32,16 @@ class MainPageFragment : BaseFragment<FragmentMainPageBinding>() {
             currencyData.observe(viewLifecycleOwner) {
                 handleCurrencyData(it)
             }
+            amount.observe(viewLifecycleOwner, ::convertAmountToSelectedCurrency)
         }
+    }
+
+    private fun convertAmountToSelectedCurrency(amount: String) {
+        var parsed = 1.0
+        if (amount.isNotEmpty()) {
+            parsed = amount.toDouble()
+        }
+        binding.adapter?.convert(parsed)
     }
 
     private fun handleCurrencyData(result: ResultState<List<Currency>, Failure>) {
@@ -41,6 +51,21 @@ class MainPageFragment : BaseFragment<FragmentMainPageBinding>() {
                     result.data?.let { data ->
                         adapter?.setDataList(data)
                         spinnerAdapter?.setDataList(data)
+
+                        currencyListSpinner.onItemSelectedListener =
+                            object : AdapterView.OnItemSelectedListener {
+                                override fun onItemSelected(
+                                    parent: AdapterView<*>,
+                                    view: View,
+                                    pos: Int,
+                                    id: Long
+                                ) {
+                                    adapter?.updateSelectedCurrencyRate(data[pos].rate)
+                                }
+
+                                override fun onNothingSelected(parent: AdapterView<*>?) {}
+                            }
+                        //TODO: Implement the LocalDB
                     }
                 }
             }
