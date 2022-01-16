@@ -37,11 +37,9 @@ class MainPageViewModel @Inject constructor(
     private fun fetchCurrencyData() {
         viewModelScope.launch {
             _progressVisibility.value = true
-            val exchangeRates = async {
-                getCurrencyExchangeRates()
-            }
+            val exchangeRates = async { getCurrencyExchangeRates() }
             //Note: This delay is because on trial account parallel api call returns success false
-            //TODO: Remove this delay when purchase account.
+            //TODO: Remove this delay when purchase account. Sorry for that :)
             delay(3000)
             val currencyList = async { getCurrenciesList() }
             when (val result = currencyRepository.getCurrenciesDetails(
@@ -53,9 +51,7 @@ class MainPageViewModel @Inject constructor(
                 }
                 is Either.Error -> {
                     getLocalCurrenciesData()
-                    _currencyData.value = ResultState.Error(result.error)
                 }
-
             }
             _progressVisibility.value = false
         }
@@ -81,7 +77,7 @@ class MainPageViewModel @Inject constructor(
         }
     }
 
-    fun getLocalCurrenciesData() {
+    private fun getLocalCurrenciesData() {
         viewModelScope.launch {
             when (val result = currencyRepository.getCurrenciesList()) {
                 is Either.Success -> {
