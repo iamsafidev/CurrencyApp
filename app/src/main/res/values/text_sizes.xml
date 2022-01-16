@@ -10,6 +10,7 @@
     <dimen name="textSizeSubtitle2">16sp</dimen>
     <dimen name="textSizeBody1">16sp</dimen>
     <dimen name="textSizeBody2">14sp</dimen>
+    <dimen name="textSizeBody3">20sp</dimen>
     <dimen name="textSizeCaption">12sp</dimen>
     <dimen name="textSizeButton">16sp</dimen>
     <dimen name="textSizeSmallButton">13sp</dimen>

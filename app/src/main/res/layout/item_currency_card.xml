@@ -13,12 +13,12 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        app:cardElevation="2dp"
-        app:contentPaddingTop="8dp"
-        app:contentPaddingLeft="8dp"
-        app:contentPaddingRight="8dp"
-        app:contentPaddingBottom="0dp">
+        android:layout_margin="@dimen/ui_spacing_half"
+        app:cardElevation="@dimen/ui_spacing_quarter"
+        app:contentPaddingBottom="@dimen/ui_spacing_single"
+        app:contentPaddingLeft="@dimen/ui_spacing_single"
+        app:contentPaddingRight="@dimen/ui_spacing_single"
+        app:contentPaddingTop="@dimen/ui_spacing_single">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -26,8 +26,8 @@
 
             <ImageView
                 android:id="@+id/flag"
-                android:layout_width="24dp"
-                android:layout_height="16dp"
+                android:layout_width="@dimen/ui_spacing_triple"
+                android:layout_height="@dimen/ui_spacing_double"
                 app:flag="@{currency.countryFlag}"
                 app:layout_constraintBottom_toBottomOf="@id/currencyCodeTextView"
                 app:layout_constraintStart_toStartOf="parent"
@@ -39,9 +39,9 @@
                 android:id="@+id/currencyCodeTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
+                android:layout_marginStart="@dimen/ui_spacing_one_half"
                 android:text="@{currency.code}"
-                android:textSize="20sp"
+                android:textSize="@dimen/textSizeBody3"
                 app:layout_constraintBottom_toTopOf="@id/line"
                 app:layout_constraintStart_toEndOf="@id/flag"
                 app:layout_constraintTop_toTopOf="parent"
@@ -50,8 +50,8 @@
             <View
                 android:id="@+id/line"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#EDF1F8"
+                android:layout_height="@dimen/ui_spacing_quarter"
+                android:background="@color/seperatorLine"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.40" />

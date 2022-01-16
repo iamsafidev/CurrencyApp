@@ -14,29 +14,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp">
+        android:paddingLeft="@dimen/ui_spacing_single"
+        android:paddingRight="@dimen/ui_spacing_single">
 
         <ImageView
             android:id="@+id/flag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:flag="@{currency.countryFlag}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:flag="@{currency.countryFlag}"
-            tools:ignore="ContentDescription"
-             />
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/currencyCodeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
+            android:layout_marginStart="@dimen/ui_spacing_one_half"
+            android:layout_marginLeft="@dimen/ui_spacing_one_half"
             android:text="@{currency.code}"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="20sp"
+            android:textSize="@dimen/textSizeBody3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/flag"
             app:layout_constraintTop_toTopOf="parent"
@@ -45,9 +44,9 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginEnd="12dp"
+            android:layout_marginStart="@dimen/ui_spacing_one_half"
+            android:layout_marginLeft="@dimen/ui_spacing_one_half"
+            android:layout_marginEnd="@dimen/ui_spacing_one_half"
             android:text="@{currency.name}"
             android:textColor="@color/colorPrimaryDark"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -60,7 +59,7 @@
             android:id="@+id/line"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/ui_spacing_single"
             android:background="@color/colorPrimaryDark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="parent"
