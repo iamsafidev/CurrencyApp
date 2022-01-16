@@ -12,9 +12,12 @@ interface ICurrencyRepository {
 
     suspend fun getCurrencyTypes(): Either<CurrencyTypes, Failure>
 
-    fun getCurrenciesDetails(
+    suspend fun getCurrenciesDetails(
         exchangeRatesList: CurrentExchangeRates?,
         currencyTypeList: CurrencyTypes?
     ): Either<List<Currency>, Failure>
 
+    suspend fun updateAllExchangeRates(saveList: List<Currency>)
+
+    suspend fun getCurrenciesList(): Either<List<Currency>, Failure>
 }

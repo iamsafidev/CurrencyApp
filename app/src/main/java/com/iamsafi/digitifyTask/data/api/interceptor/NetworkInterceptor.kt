@@ -6,6 +6,10 @@ import okhttp3.Response
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
+/**
+ * To cache the network response for 30 mins for saving bandwidth.
+ */
+
 class NetworkInterceptor @Inject constructor() : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val response = chain.proceed(chain.request())

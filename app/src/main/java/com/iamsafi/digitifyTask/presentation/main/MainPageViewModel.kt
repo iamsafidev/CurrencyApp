@@ -47,8 +47,15 @@ class MainPageViewModel @Inject constructor(
             when (val result = currencyRepository.getCurrenciesDetails(
                 exchangeRates.await(), currencyList.await()
             )) {
-                is Either.Success -> _currencyData.value = ResultState.Success(result.data)
-                is Either.Error -> _currencyData.value = ResultState.Error(result.error)
+                is Either.Success -> {
+                    updateCurrencies(result.data)
+                    _currencyData.value = ResultState.Success(result.data)
+                }
+                is Either.Error -> {
+                    getLocalCurrenciesData()
+                    _currencyData.value = ResultState.Error(result.error)
+                }
+
             }
             _progressVisibility.value = false
         }
@@ -65,6 +72,24 @@ class MainPageViewModel @Inject constructor(
         return when (val response = currencyRepository.getCurrencyTypes()) {
             is Either.Success -> response.data
             is Either.Error -> null
+        }
+    }
+
+    private fun updateCurrencies(list: List<Currency>) {
+        viewModelScope.launch {
+            currencyRepository.updateAllExchangeRates(list)
+        }
+    }
+
+    fun getLocalCurrenciesData() {
+        viewModelScope.launch {
+            when (val result = currencyRepository.getCurrenciesList()) {
+                is Either.Success -> {
+                    _currencyData.value = ResultState.Success(result.data)
+                }
+                is Either.Error -> _currencyData.value = ResultState.Error(result.error)
+            }
+            _progressVisibility.value = false
         }
     }
 }
