@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/mainPageFragment"
-        android:name="com.iamsafi.digitifyTask.presentation.main.MainPageFragment"
+        android:name="com.iamsafi.currency.presentation.main.MainPageFragment"
         android:label="fragment_main_page"
         tools:layout="@layout/fragment_main_page" />
     <fragment
         android:id="@+id/blankFragment"
-        android:name="com.iamsafi.digitifyTask.presentation.main.BlankFragment"
+        android:name="com.iamsafi.currency.presentation.main.BlankFragment"
         android:label="fragment_blank"
         tools:layout="@layout/fragment_blank" />
 </navigation>

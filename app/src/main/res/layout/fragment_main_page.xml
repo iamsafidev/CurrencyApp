@@ -9,15 +9,15 @@
 
         <variable
             name="adapter"
-            type="com.iamsafi.digitifyTask.presentation.adapters.CurrencyListAdapter" />
+            type="com.iamsafi.currency.presentation.adapters.CurrencyListAdapter" />
 
         <variable
             name="spinnerAdapter"
-            type="com.iamsafi.digitifyTask.presentation.adapters.SpinnerAdapter" />
+            type="com.iamsafi.currency.presentation.adapters.SpinnerAdapter" />
 
         <variable
             name="viewModel"
-            type="com.iamsafi.digitifyTask.presentation.main.MainPageViewModel" />
+            type="com.iamsafi.currency.presentation.main.MainPageViewModel" />
     </data>
 
     <FrameLayout
